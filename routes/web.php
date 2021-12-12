@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[FrontController::class,'index']);
+
+Route::get('/contact',[FrontController::class,'contactpage'])->name('contact.page');
+
+Route::group(['prefix' => 'admin'],function(){
+
+    Route::get('/create',[FrontController::class,'index']);
+    Route::get('/list',[FrontController::class,'index']);
+    Route::get('/dashboard',[FrontController::class,'index']);
+    Route::get('/user/1',[FrontController::class,'index']);
+
 });
